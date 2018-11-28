@@ -1,9 +1,12 @@
 package com.msref.course.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -22,6 +25,9 @@ public class Course {
 	
 	@NotBlank
 	private String lecturer;
+	
+	@Transient
+	private List<Topic> topics;
 
 	public Integer getCourseId() {
 		return courseId;
@@ -53,6 +59,14 @@ public class Course {
 
 	public void setLecturer(String lecturer) {
 		this.lecturer = lecturer;
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(List<Topic> topics) {
+		this.topics = topics;
 	}
 
 }
