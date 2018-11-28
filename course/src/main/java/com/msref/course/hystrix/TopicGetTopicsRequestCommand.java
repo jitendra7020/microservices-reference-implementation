@@ -25,7 +25,7 @@ public class TopicGetTopicsRequestCommand extends HystrixCommand<List<Topic>>{
 
 	@Override
 	protected List<Topic> run() throws Exception {
-		ResponseEntity<Topic[]> response  = restTemplate.getForEntity("http://localhost:8082/api/courses/" + courseId +"/topics", Topic [] .class);
+		ResponseEntity<Topic[]> response  = restTemplate.getForEntity("http://topic-service/api/courses/" + courseId +"/topics", Topic [] .class);
 		return Arrays.asList(response.getBody());
 	}
 
