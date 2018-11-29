@@ -21,6 +21,14 @@ public interface TopicService {
 	public Topic updateTopic(Topic topic);
 	
 	/**
+	 * Service method used to drop all existing topics pertaining to a course and add the new topic list
+	 * @param courseId
+	 * @param topicList
+	 * @return
+	 */
+	public List<Topic> updateTopicByCourse(Integer courseId, List<Topic> topicList);
+	
+	/**
 	 * Service method to delete a topic
 	 * @param topicId
 	 */

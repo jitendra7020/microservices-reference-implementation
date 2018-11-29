@@ -59,6 +59,13 @@ public class TopicController {
 		return topicService.updateTopic(topic);
 	}
 	
+	@PutMapping("/courses/{courseId}/topics")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<Topic> updateTopicsByCourse(@Valid @RequestBody List<Topic> topicList, @PathVariable (value = "courseId") Integer courseId) {
+		topicList = TopicUtil.addCourseIdToTopicList(topicList, courseId);
+		return topicService.updateTopicByCourse(courseId, topicList);
+	}	
+	
 	@DeleteMapping("/courses/topics/{topicId}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteTopic(@PathVariable(value = "topicId") Integer topicId) {

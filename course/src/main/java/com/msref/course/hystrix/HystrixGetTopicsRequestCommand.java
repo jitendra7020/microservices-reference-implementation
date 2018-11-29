@@ -11,13 +11,13 @@ import com.msref.course.model.Topic;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 
-public class TopicGetTopicsRequestCommand extends HystrixCommand<List<Topic>>{
+public class HystrixGetTopicsRequestCommand extends HystrixCommand<List<Topic>>{
 	
 	RestTemplate restTemplate;
 	
 	Integer courseId;
 
-	public TopicGetTopicsRequestCommand(Integer courseId, RestTemplate restTemplate) {
+	public HystrixGetTopicsRequestCommand(Integer courseId, RestTemplate restTemplate) {
 		super(HystrixCommandGroupKey.Factory.asKey("TopicServiceGroup"));
 		this.courseId = courseId;
 		this.restTemplate = restTemplate;

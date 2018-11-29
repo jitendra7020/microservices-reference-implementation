@@ -32,6 +32,16 @@ public class TopicServiceImpl implements TopicService{
 		
 		return topicRepository.save(topic);
 	}
+	
+	@Override
+	public List<Topic> updateTopicByCourse(Integer courseId, List<Topic> topicList) {
+
+		//Deleting the existing topics pertaining to the given courseId
+		topicRepository.deleteByCourseId(courseId);
+		
+		//Adding and returning the new set of topics
+		return topicRepository.saveAll(topicList);
+	}	
 
 	@Override
 	public void deleteTopic(Integer topicId) {
@@ -70,5 +80,4 @@ public class TopicServiceImpl implements TopicService{
 		List<Topic> topicList = topicRepository.findByCourseId(courseId);
 		return topicList;
 	}
-
 }

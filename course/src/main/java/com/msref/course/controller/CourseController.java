@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msref.course.model.Course;
+import com.msref.course.model.Topic;
 import com.msref.course.service.CourseService;
+import com.msref.course.util.CourseUtil;
 
 @RestController
 @RequestMapping("/api")
@@ -41,6 +43,11 @@ public class CourseController {
 	@PostMapping("/courses")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	Course createCourse(@Valid @RequestBody Course course){
+		
+		// Adding the courseId to each item in topic list
+		List<Topic> modifiedTopicList = CourseUtil.addCourseIdToTopicList(course.getTopics(), course.getCourseId());
+		course.setTopics(modifiedTopicList);
+		
 		return courseService.createCourse(course);
 	}
 	
