@@ -12,6 +12,8 @@ public class GlobalErrorHandlingConstants {
 
 	public static final int UNDEFINED_ERROR_CODE = 702;
 	
+	public static final int BAD_REQUEST_ERROR_CODE = 703;	
+	
 	//Custom error messages
 	
 	public static final String UNDEFINED_ERROR_MESSAGE = "Undefined error occured!";

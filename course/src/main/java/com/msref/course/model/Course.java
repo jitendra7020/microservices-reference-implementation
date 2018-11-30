@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -27,6 +28,7 @@ public class Course {
 	private String lecturer;
 	
 	@Transient
+	@Valid //Topic is a  nested object in Course. If you don't use @valid annotation here, only the course fileds will be validated even in you have used the @NotBland annotation on topic fields
 	private List<Topic> topics;
 
 	public Integer getCourseId() {

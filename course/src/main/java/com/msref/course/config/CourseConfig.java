@@ -5,18 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-import com.msref.course.model.ErrorResponse;
-
 @Configuration
 public class CourseConfig {
 	
 	@Bean
-	public ErrorResponse errorResponse() {
-		return new ErrorResponse();
-	}
-	
-	@Bean
-	@LoadBalanced //This annotation is used to enable ribbon client side load balancer in rest template
+	@LoadBalanced //This annotation is used to enable ribbon client side load balancer in rest template. Without this you are not able to call an endpoint with eureka service name
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}

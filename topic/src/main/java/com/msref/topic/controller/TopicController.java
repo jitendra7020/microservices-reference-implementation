@@ -45,6 +45,9 @@ public class TopicController {
 		return topicService.listTopics();
 	}
 	
+	// Even though I have used @Valid annotation, it won't work with a list. This is a limitation in bean validations. @Valid works with a 
+	// list only if it has been used in the class itself on the attribute which has a list of objects 
+	// For example Course class has a list of Topics and @Valid is working fine when used inside the Course class - See Course.java file
 	@PostMapping("/courses/{courseId}/topics")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public List<Topic> createTopics(@Valid @RequestBody List<Topic> topicList, @PathVariable (value = "courseId") Integer courseId) {
@@ -52,6 +55,7 @@ public class TopicController {
 		return topicService.createTopics(topicList);
 	}
 	
+	//@Valid is working fine here as there is only one object not a list of objects
 	@PutMapping("/courses/topics/{topicId}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public Topic updateTopic(@Valid @RequestBody Topic topic, @PathVariable (value = "topicId") Integer topicId) {
@@ -59,6 +63,9 @@ public class TopicController {
 		return topicService.updateTopic(topic);
 	}
 	
+	// Even though I have used @Valid annotation, it won't work with a list. This is a limitation in bean validations. @Valid works with a 
+	// list only if it has been used in the class itself on the attribute which has a list of objects 
+	// For example Course class has a list of Topics and @Valid is working fine when used inside the Course class - See Course.java file	
 	@PutMapping("/courses/{courseId}/topics")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Topic> updateTopicsByCourse(@Valid @RequestBody List<Topic> topicList, @PathVariable (value = "courseId") Integer courseId) {

@@ -1,11 +1,15 @@
 package com.msref.course.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class Topic {
 	
 	private int topicId;
 	
+	@NotBlank
 	private String name;
 	
+	@NotBlank
 	private String description;
 	
 	private Integer courseId;
