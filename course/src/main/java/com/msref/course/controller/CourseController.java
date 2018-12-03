@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,24 +27,34 @@ import com.msref.course.util.CourseUtil;
 @RequestMapping("/api")
 public class CourseController {
 	
+	/**
+	 * Logger object
+	 */
+	private static Logger logger = LoggerFactory.getLogger(CourseController.class);
+	
 	@Autowired
 	CourseService courseService;
 	
 	@GetMapping("/courses")
 	@ResponseStatus(code = HttpStatus.OK)
 	List<Course> listCourses(){
+		logger.info("Request received for listCourses operation");
+		
 		return courseService.listCourses();
 	}
 	
 	@GetMapping("/courses/{courseId}")
 	@ResponseStatus(code = HttpStatus.OK)
 	Course getCourse(@PathVariable(value = "courseId") Integer courseId){
+		logger.info("Request received for getCourse operation");
+		
 		return courseService.getCourse(courseId);
 	}
 	
 	@PostMapping("/courses")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	Course createCourse(@Valid @RequestBody Course course){
+		logger.info("Request received for createCourse operation");
 		
 		// Adding the courseId to each item in topic list
 		List<Topic> modifiedTopicList = CourseUtil.addCourseIdToTopicList(course.getTopics(), course.getCourseId());
@@ -54,6 +66,8 @@ public class CourseController {
 	@PutMapping("/courses/{courseId}")
 	@ResponseStatus(code = HttpStatus.OK)
 	Course updateCourse(@Valid @RequestBody Course course, @PathVariable(value = "courseId") Integer courseId){
+		logger.info("Request received for updateCourse operation");
+		
 		course.setCourseId(courseId);
 		return courseService.updateCourse(course);
 	}
@@ -61,6 +75,8 @@ public class CourseController {
 	@DeleteMapping("/courses/{courseId}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void deleteCourse(@PathVariable(value = "courseId") Integer courseId){
+		logger.info("Request received for deleteCourse operation");
+		
 		courseService.deleteCourse(courseId);
 	}	
  	
